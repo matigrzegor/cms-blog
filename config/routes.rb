@@ -2,6 +2,6 @@ Rails.application.routes.draw do
   
   root to: "pages#home"
 
-  devise_for :users, skip: :sessions
+  devise_for :users
   
 end
