@@ -5,9 +5,11 @@ class RegistrationsController < ApplicationController
         @user = User.new(sign_up_params)
 
         if @user.save
-            redirect_to root_url
+            render json: {status: "Registration was successful."}, status: 200
         else
-            render :new
+            render json: {status: "Bad Request",
+                          code: 400,
+                          details: @user.errors.full_messages.join('. ')}, status: 400
         end
     end
 
@@ -25,7 +27,9 @@ class RegistrationsController < ApplicationController
             token = String(params[:token])
             valid = RegistrationToken.verify(token)
 
-            redirect_to registration_path unless valid
+            render json: {status: "Forbidden",
+                          code: 403,
+                          details: "Registration token needed."}, status: 403
         end
 
 end
