@@ -1,4 +1,4 @@
-class RegistrationToken < ApplicationController
+class RegistrationTokensController < ApplicationController
     protect_from_forgery except: :create
 
     def create
