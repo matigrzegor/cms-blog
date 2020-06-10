@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
     before_action :verify_registration_token, only: :create
+    protect_from_forgery except: :create
 
     def create
         build_user
