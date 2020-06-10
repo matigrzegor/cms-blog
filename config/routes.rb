@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   resources :registrations, only: [:create]
   
+  resources :registration_tokens, only: [:create]
+
 end
