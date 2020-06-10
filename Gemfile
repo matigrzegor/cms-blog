@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.7'
 # devise
 gem 'devise', '~> 4.7', '>= 4.7.1'
 
+# doorkeeper
+gem 'doorkeeper', '~> 5.4'
+
 # rack-cors
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
