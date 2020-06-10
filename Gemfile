@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.7'
 # devise
 gem 'devise', '~> 4.7', '>= 4.7.1'
 
+# rack-cors
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
