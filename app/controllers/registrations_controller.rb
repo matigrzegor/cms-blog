@@ -6,11 +6,13 @@ class RegistrationsController < ApplicationController
 
         if @user.save
             destroy_registration_token
-            render json: {status: "Registration was successful."}, status: 200
+            render json: {status: "Registration was successful."},
+                          status: 200
         else
             render json: {status: "Bad Request",
                           code: 400,
-                          details: @user.errors.full_messages.join('. ')}, status: 400
+                          details: @user.errors.full_messages.join('. ')},
+                          status: 400
         end
     end
 
@@ -42,7 +44,8 @@ class RegistrationsController < ApplicationController
 
             render json: {status: "Forbidden",
                           code: 403,
-                          details: "Registration token needed."}, status: 403
+                          details: "Registration token needed."},
+                          status: 403 unless valid
         end
 
         def destroy_registration_token
