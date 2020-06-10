@@ -14,9 +14,12 @@ module RegistrationTokenLifeCyclable
 
         return false unless registration_token&.expires_in&. > time_now
 
-        registration_token.destroy
-
         true
     end
 
+    def remove(token)
+        registration_token = self.find_by_token(token)
+
+        registration_token.destroy
+    end
 end

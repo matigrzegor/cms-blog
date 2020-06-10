@@ -5,6 +5,7 @@ class RegistrationsController < ApplicationController
         @user = User.new(sign_up_params)
 
         if @user.save
+            destroy_registration_token
             render json: {status: "Registration was successful."}, status: 200
         else
             render json: {status: "Bad Request",
@@ -23,13 +24,23 @@ class RegistrationsController < ApplicationController
             }
         end
 
+        def token_from_params
+            String(params[:token])
+        end
+
+        def token
+            @token ||= token_from_params
+        end
+
         def verify_registration_token
-            token = String(params[:token])
-            valid = RegistrationToken.verify(token)
+            valid = RegistrationToken.verify(@token)
 
             render json: {status: "Forbidden",
                           code: 403,
                           details: "Registration token needed."}, status: 403
         end
 
+        def destroy_registration_token
+            RegistrationToken.remove(@token)
+        end
 end
