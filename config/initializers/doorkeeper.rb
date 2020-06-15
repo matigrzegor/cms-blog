@@ -348,6 +348,8 @@ Doorkeeper.configure do
   #
   # grant_flows %w[authorization_code client_credentials]
 
+  grant_flows %w[password]
+  
   # Allows to customize OAuth grant flows that +each+ application support.
   # You can configure a custom block (or use a class respond to `#call`) that must
   # return `true` in case Application instance supports requested OAuth grant flow
