@@ -275,9 +275,6 @@ Doorkeeper.configure do
   force_ssl_in_redirect_uri false
 
 
-  # https://github.com/doorkeeper-gem/doorkeeper/wiki/Authorization-Code-Flow (my own config)
-  native_redirect_uri "http://localhost:8080"
-
   # Specify what redirect URI's you want to block during Application creation.
   # Any redirect URI is whitelisted by default.
   #
