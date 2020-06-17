@@ -29,10 +29,13 @@
       <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge %>
       <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method %>
 
+      <%= label_tag(:user_email, "email") %>
       <%= email_field :user, :email %>
+
+      <%= label_tag(:password, "password") %>
       <%= password_field_tag :password %>
 
-      <%= submit_tag t('doorkeeper.authorizations.buttons.authorize'), class: "btn btn-success btn-lg btn-block" %>
+      <%= button_tag t('doorkeeper.authorizations.buttons.authorize'), type: 'button', id: 'authorize_btn' %>
     <% end %>
     <%= form_tag oauth_authorization_path, method: :delete do %>
       <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
@@ -42,7 +45,7 @@
       <%= hidden_field_tag :scope, @pre_auth.scope %>
       <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge %>
       <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method %>
-      <%= submit_tag t('doorkeeper.authorizations.buttons.deny'), class: "btn btn-danger btn-lg btn-block" %>
+      <%= submit_tag t('doorkeeper.authorizations.buttons.deny'), id: 'deny_btn' %>
     <% end %>
   </div>
 </main>

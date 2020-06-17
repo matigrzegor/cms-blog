@@ -18,8 +18,6 @@ Doorkeeper.configure do
       if user&.valid_for_authentication? { user.valid_password?(params[:password]) } && user&.active_for_authentication?
         #request.env['warden'].set_user(user, scope: :user, store: false)
         user
-      else
-        render "doorkeeper/authorizations/new"
       end
 
     end

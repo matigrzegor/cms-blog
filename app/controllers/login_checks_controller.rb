@@ -2,7 +2,7 @@ class LoginChecksController < ApplicationController
     protect_from_forgery except: :create
 
     def create
-        user = User.find_for_database_authentication(email: login_check_params[:email)])
+        user = User.find_for_database_authentication(email: login_check_params[:email])
       
         if user&.valid_for_authentication? { user.valid_password?(login_check_params[:password]) } && user&.active_for_authentication?
             render json: {status: "OK",
