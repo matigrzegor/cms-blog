@@ -10,7 +10,19 @@ Doorkeeper.configure do
     # Put your resource owner authentication logic here.
     # Example implementation:
     #   User.find_by(id: session[:user_id]) || redirect_to(new_user_session_url)
-    user = User.first
+    if request.env['REQUEST_METHOD'] == 'POST'
+      
+
+      user = User.find_for_database_authentication(email: params.dig(:user)&.[](:email))
+      
+      if user&.valid_for_authentication? { user.valid_password?(params[:password]) } && user&.active_for_authentication?
+        #request.env['warden'].set_user(user, scope: :user, store: false)
+        user
+      else
+        render "doorkeeper/authorizations/new"
+      end
+
+    end
   end
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
