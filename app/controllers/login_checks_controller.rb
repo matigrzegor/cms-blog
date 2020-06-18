@@ -4,14 +4,12 @@ class LoginChecksController < ApplicationController
     def create
         user = User.find_for_database_authentication(email: login_check_params[:email])
       
-        if user&.valid_for_authentication? { user.valid_password?(login_check_params[:password]) } && user&.active_for_authentication?
-            render json: {status: "OK",
-                          code: 200,
-                          details: "User found with this credentials"}, status: 200
+        if user == nil
+            render_wrong_email_error
+        elsif user&.valid_for_authentication? { user.valid_password?(login_check_params[:password]) } && user&.active_for_authentication?
+            render_success
         else
-            render json: {status: "Not found",
-                          code: 404,
-                          details: "No user found with this credentials"}, status: 404
+            render_wrong_password_error
         end
     end
 
@@ -22,5 +20,23 @@ class LoginChecksController < ApplicationController
                 email: String(params.dig(:user)&.[](:email)),
                 password: String(params[:password])
             }
+        end
+
+        def render_wrong_email_error
+            render json: {status: "Bad Request",
+                          code: 400,
+                          details: "No user found with this email."}, status: 400
+        end
+
+        def render_wrong_password_error
+            render json: {status: "Bad Request",
+                          code: 400,
+                          details: "Wrong password for this email."}, status: 400
+        end
+
+        def render_success
+            render json: {status: "OK",
+                          code: 200,
+                          details: "User found with this credentials"}, status: 200
         end
 end
