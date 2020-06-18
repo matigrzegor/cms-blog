@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+html {
+    font-size: 10px;
+    background-color: #efefef;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1,
+h2 {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 1.6rem 3.2rem;
+    margin: 0;
+    text-align: center;
+}
+
+h3 {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 0;
+}
+
+p {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 0;
+    margin: 0;
+}
+
+label {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+    margin: 0.4rem 0;
+    width: 100%;
+    display: block;
+}
+
+#container {
+    width: 36rem;
+    padding: 2.4rem;
+    background: #fefefe;
+}
+
+ul li {
+    list-style: none;
+}
+
+ul li span {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 0;
+    margin: 0;
+}
+
+form:first-child {
+    margin-top: 3.6rem;
+}
+
+form input {
+    width: 100%;
+    display: block;
+    height: 3.6rem;
+    margin-bottom: 1.8rem;
+    padding-left: 0.6rem;
+    outline: none;
+    border: none;
+    background: rgba(0, 0, 0, 0.05);
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#deny_btn,
+#authorize_btn {
+    width: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    height: 3.6rem;
+    margin-bottom: 0.4rem;
+    margin-top: 0.4rem;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.8);
+    text-transform: uppercase;
+}
+
+#authorize_btn:hover,
+#deny_btn:hover {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+#authorize_btn:hover,
+#deny_btn:active {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.error {
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: tomato;
+}
+
+@media (max-width: 480px) {
+
+    body,
+    html {
+        font-size: 8px;
+    }
+}
+
+/* .auth__container .auth__form .form__button {
+    width: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+.auth__container .auth__form .button--text {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.8);
+    margin: 0.4rem 0;
+    min-height: 2.4rem;
+}
+
+.auth__container .auth__form .button--text:hover {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+.auth__container .auth__form .button--text:active {
+    background: rgba(0, 0, 0, 0.1);
+} */
