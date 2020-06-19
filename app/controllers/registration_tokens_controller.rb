@@ -1,5 +1,6 @@
 class RegistrationTokensController < ApplicationController
     protect_from_forgery except: :create
+    before_action :doorkeeper_authorize!
 
     def create
         token = create_registration_token
