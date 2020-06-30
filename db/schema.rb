@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_18_103848) do
+ActiveRecord::Schema.define(version: 2020_06_30_061721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blog_posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "introduction", null: false
+    t.text "content_in_text", null: false
+    t.text "content_in_html", null: false
+    t.text "content_in_json", null: false
+    t.string "editor", null: false
+    t.string "type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.bigint "resource_owner_id", null: false
