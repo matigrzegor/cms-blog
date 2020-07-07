@@ -38,6 +38,8 @@ class QuillBlogPostsController < ApplicationController
 
         def build_quill_blog_post
             @quill_blog_post ||= new_quill_blog_post
+            puts quill_blog_post_params
+            puts quill_blog_post_params[:data].class
             @quill_blog_post.attributes = quill_blog_post_params
             @quill_blog_post
         end
