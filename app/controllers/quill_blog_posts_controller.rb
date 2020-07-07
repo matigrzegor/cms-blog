@@ -50,7 +50,7 @@ class QuillBlogPostsController < ApplicationController
         end
 
         def quill_blog_post_params
-            params.permit(:title, :introduction, :data)
+            params.permit(:title, :introduction, data: [:editor, ops: []])
         end
 
         def render_quill_blog_post

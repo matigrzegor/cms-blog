@@ -4,7 +4,7 @@ module Quill
 
             def initialize(data)
                 @data = data
-                @chain = first_handler.new(second_handler.new(third_handler.new(fourth_handler.new(fifth_handler.new(sixth_handler.new)))))    
+                @chain = first_handler.new(second_handler.new(third_handler.new(fourth_handler.new(fifth_handler.new))))    
             end
 
             def execute
@@ -26,16 +26,13 @@ module Quill
                 end
 
                 def fourth_handler
-                    Chain::DataJsonificationHandler
-                end
-
-                def fifth_handler
                     Chain::ContentGenerationHandler
                 end
 
-                def sixth_handler
+                def fifth_handler
                     Chain::EditorAttachmentHandler
                 end
+
         end
     end
 end
