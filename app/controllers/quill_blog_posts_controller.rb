@@ -38,6 +38,7 @@ class QuillBlogPostsController < ApplicationController
         def build_quill_blog_post
             @quill_blog_post ||= QuillBlogPost.new(user_id: current_resource_owner_id)
             @quill_blog_post.attributes = quill_blog_post_params
+            @quill_blog_post
         end
 
         def load_quill_blog_post
