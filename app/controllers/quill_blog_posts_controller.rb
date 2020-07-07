@@ -38,8 +38,6 @@ class QuillBlogPostsController < ApplicationController
 
         def build_quill_blog_post
             @quill_blog_post ||= new_quill_blog_post
-            puts quill_blog_post_params
-            puts quill_blog_post_params[:data].class
             @quill_blog_post.attributes = quill_blog_post_params
             @quill_blog_post
         end
@@ -57,7 +55,7 @@ class QuillBlogPostsController < ApplicationController
         end
 
         def quill_blog_post_params
-            params.permit(:title, :introduction, data: [:editor, ops: []])
+            params.to_unsafe_h.slice(:title, :introduction, :data)
         end
 
         def render_quill_blog_post
