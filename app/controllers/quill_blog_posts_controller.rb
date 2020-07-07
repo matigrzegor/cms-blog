@@ -1,4 +1,5 @@
 class QuillBlogPostsController < ApplicationController
+    include ResourceOwnerable
     protect_from_forgery except: :create
     before_action :doorkeeper_authorize!
 
@@ -36,9 +37,13 @@ class QuillBlogPostsController < ApplicationController
     private
 
         def build_quill_blog_post
-            @quill_blog_post ||= QuillBlogPost.new(user_id: current_resource_owner_id)
+            @quill_blog_post ||= new_quill_blog_post
             @quill_blog_post.attributes = quill_blog_post_params
             @quill_blog_post
+        end
+
+        def new_quill_blog_post
+            QuillBlogPost.new(user_id: current_resource_owner_id)
         end
 
         def load_quill_blog_post
@@ -73,11 +78,4 @@ class QuillBlogPostsController < ApplicationController
                          status: 400
         end
 
-        def current_resource_owner
-            @current_resource_owner ||= User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
-        end
-
-        def current_resource_owner_id
-            @current_resource_owner_id ||= current_resource_owner.id if current_resource_owner
-        end
 end
