@@ -6,7 +6,7 @@ class GeneralSuccessSerializer
 
     def serializable_hash
         serializable_hash = {}
-        serializable_hash.merge!(status_hash)
+        serializable_hash.merge!(status_attribute_hash)
         serializable_hash
     end
 

@@ -6,8 +6,8 @@ class BadRequestErrorSerializer
 
     def serializable_hash
         serializable_hash = {}
-        serializable_hash.merge!(base_hash)
-        serializable_hash.merge!(details_hash) if @active_record_object
+        serializable_hash.merge!(base_attributes_hash)
+        serializable_hash.merge!(details_attribute_hash) if @active_record_object
         serializable_hash
     end
 
