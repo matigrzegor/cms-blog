@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :registration_tokens, only: [:create]
 
   resources :login_checks, only: [:create]
+
+  resources :quill_blog_posts, only: [:index, :show, :create, :update]
 end
