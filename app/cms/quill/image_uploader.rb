@@ -64,7 +64,7 @@ module Quill
             end
 
             def unique_filename_generator
-                @unique_filename_generator ||= Quill::UniqueFilenameGenerator.new
+                @unique_filename_generator ||= UniqueFilenameGenerator.new
             end
 
             def image_arr
@@ -73,7 +73,7 @@ module Quill
 
             def purge_files(filenames)
                 filenames.each do |filename|
-                    ActiveStorage::Blob.find_by(filename: filename).purge
+                    #ActiveStorage::Blob.find_by(filename: filename).purge
                 end
             end
 
