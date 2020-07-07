@@ -16,6 +16,7 @@ module Specific
 
             def base_hash(quill_blog_post)
                 {
+                    id: quill_blog_post.id,
                     author: quill_blog_post.author_username,
                     create_date: quill_blog_post.created_at,
                     last_update_date: quill_blog_post.updated_at,

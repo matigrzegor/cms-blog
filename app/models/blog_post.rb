@@ -1,6 +1,6 @@
 class BlogPost < ApplicationRecord
     include DataValidatable
-    include ContentInJsonStorable
+    include ContentStorable
     include Authorable
 
     belongs_to :user
