@@ -53,25 +53,23 @@ class QuillBlogPostsController < ApplicationController
         end
 
         def render_quill_blog_post
-            render json: Specific::QuillBlogPostSerializer.new.serialize_quill_blog_post(@quill_blog_post),
+            render json: QuillBlogPostSerializer.new(@quill_blog_post).serializable_hash,
                          status: 200
         end
 
         def render_quill_blog_posts
-            render json: Specific::QuillBlogPostSerializer.new.serialize_quill_blog_posts(@quill_blog_posts),
+            render json: QuillBlogPostSerializer.new(@quill_blog_posts, :multiple).serializable_hash,
                          status: 200
         end
 
         def render_success
-            render json: {status: "Registration was successful."},
-                          status: 200
+            render json: GeneralSuccessSerializer.new("Registration").serializable_hash,
+                         status: 200
         end
 
         def render_error
-            render json: {status: "Bad Request",
-                          code: 400,
-                          details: @quill_blog_post.errors.full_messages.join('. ')},
-                          status: 400
+            render json: BadRequestErrorSerializer.new(@quill_blog_post).serializable_hash,
+                         status: 400
         end
 
         def current_resource_owner
@@ -79,6 +77,6 @@ class QuillBlogPostsController < ApplicationController
         end
 
         def current_resource_owner_id
-            @current_resource_owner_id ||= @current_resource_owner.id
+            @current_resource_owner_id ||= current_resource_owner.id if current_resource_owner
         end
 end
