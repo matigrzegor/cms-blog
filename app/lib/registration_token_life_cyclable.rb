@@ -20,6 +20,11 @@ module RegistrationTokenLifeCyclable
     def remove(token)
         registration_token = self.find_by_token(token)
 
-        registration_token.destroy
+        if registration_token
+            registration_token.destroy
+            true
+        else
+            false
+        end
     end
 end
