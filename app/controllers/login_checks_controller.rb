@@ -23,15 +23,13 @@ class LoginChecksController < ApplicationController
         end
 
         def render_wrong_email_error
-            render json: {status: "Bad Request",
-                          code: 400,
-                          details: "No user found with this email."}, status: 400
+            render json: BadRequestErrorSerializer.new(details: "No user found with this email.").serializable_hash,
+                         status: 400
         end
 
         def render_wrong_password_error
-            render json: {status: "Bad Request",
-                          code: 400,
-                          details: "Wrong password for this email."}, status: 400
+            render json: BadRequestErrorSerializer.new(details: "Wrong password for this email.").serializable_hash,
+                         status: 400
         end
 
         def render_success

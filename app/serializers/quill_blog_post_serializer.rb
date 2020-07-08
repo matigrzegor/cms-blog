@@ -1,15 +1,17 @@
 class QuillBlogPostSerializer
 
-    def initialize(active_record_object, type = :single)
-        @active_record_object = active_record_object
+    def initialize(object: nil, type: :single)
+        @active_record_object = object
         @type = type
     end
 
     def serializable_hash
         if @type == :single
-            single_resource_serializable_hash
+            return single_resource_serializable_hash if @active_record_object
+            {}
         elsif @type == :multiple
-            multiple_resource_serializable_hash
+            return multiple_resource_serializable_hash if @active_record_object
+            []
         end
     end
 

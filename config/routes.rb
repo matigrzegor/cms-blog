@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
   resources :login_checks, only: [:create]
 
-  resources :quill_blog_posts, only: [:index, :show, :create, :update]
+  resources :quill_blog_posts, only: [:index, :show, :create, :update, :destroy]
 end

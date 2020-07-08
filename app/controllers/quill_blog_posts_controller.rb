@@ -3,14 +3,16 @@ class QuillBlogPostsController < ApplicationController
     protect_from_forgery except: :create
     before_action :doorkeeper_authorize!
 
+    def index
+        load_quill_blog_posts
+        
+        render_quill_blog_posts
+    end
+
     def show
         load_quill_blog_post
 
         render_quill_blog_post
-    end
-
-    def index
-        render_quill_blog_posts
     end
 
     def create
@@ -19,7 +21,7 @@ class QuillBlogPostsController < ApplicationController
         if build_quill_blog_post.save
             render_quill_blog_post
         else
-            render_error
+            render_bad_request_error
         end
     end
 
@@ -30,8 +32,15 @@ class QuillBlogPostsController < ApplicationController
         if build_quill_blog_post.save
             render_quill_blog_post
         else
-            render_error
+            render_bad_request_error
         end
+    end
+
+    def destroy
+        load_quill_blog_post
+        @quill_blog_post.destroy
+
+        render_successful_delete
     end
 
     private
@@ -47,7 +56,7 @@ class QuillBlogPostsController < ApplicationController
         end
 
         def load_quill_blog_post
-            @quill_blog_post ||= QuillBlogPost.find(params[:id])
+            @quill_blog_post ||= QuillBlogPost.find_by!(user_id: current_resource_owner_id, id: params[:id])
         end
 
         def load_quill_blog_posts
@@ -59,22 +68,22 @@ class QuillBlogPostsController < ApplicationController
         end
 
         def render_quill_blog_post
-            render json: QuillBlogPostSerializer.new(@quill_blog_post).serializable_hash,
+            render json: QuillBlogPostSerializer.new(object: @quill_blog_post).serializable_hash,
                          status: 200
         end
 
         def render_quill_blog_posts
-            render json: QuillBlogPostSerializer.new(@quill_blog_posts, :multiple).serializable_hash,
+            render json: QuillBlogPostSerializer.new(object: @quill_blog_posts, type: :multiple).serializable_hash,
                          status: 200
         end
 
-        def render_success
-            render json: GeneralSuccessSerializer.new("Registration").serializable_hash,
+        def render_successful_delete
+            render json: GeneralSuccessfulActionSerializer.new(action: "Blog post deletion").serializable_hash,
                          status: 200
         end
 
-        def render_error
-            render json: BadRequestErrorSerializer.new(@quill_blog_post).serializable_hash,
+        def render_bad_request_error
+            render json: BadRequestErrorSerializer.new(object: @quill_blog_post).serializable_hash,
                          status: 400
         end
 
