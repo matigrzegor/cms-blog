@@ -18,7 +18,7 @@ class QuillBlogPostSerializer
     private
 
         def single_resource_serializable_hash
-            base_attributes_hash(@active_record_object).merge!(content_attribute_hash(@active_record_object))
+            base_attributes_hash(@active_record_object).merge!(data_attribute_hash(@active_record_object))
         end
 
         def multiple_resource_serializable_hash
@@ -38,9 +38,12 @@ class QuillBlogPostSerializer
             }
         end
 
-        def content_attribute_hash(active_record_object)
+        def data_attribute_hash(active_record_object)
             {
-                content: active_record_object.content_in_json
+                data: {
+                    editor: active_record_object.editor,
+                    ops: active_record_object.content_in_json
+                }
             }
         end
 
