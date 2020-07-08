@@ -1,20 +1,37 @@
 class RegistrationsController < ApplicationController
     before_action :verify_registration_token, only: :create
-    protect_from_forgery except: :create
+    protect_from_forgery except: [:create, :update, :destroy]
+    before_action :doorkeeper_authorize!, only: [:update, :destroy]
 
     def create
         build_user
 
         if @user.save
             destroy_registration_token
-            render json: {status: "Registration was successful."},
-                          status: 200
+
+            render_successful_registration
         else
-            render json: {status: "Bad Request",
-                          code: 400,
-                          details: @user.errors.full_messages.join('. ')},
-                          status: 400
+            render_bad_request_error
         end
+    end
+
+    def update
+        load_user
+        build_user
+
+        if @user.save
+            render_user
+        else
+            render_bad_request_error
+        end 
+    end
+
+    def destroy
+        load_user
+
+        @user.destroy
+
+        render_successful_deletion
     end
 
     private
@@ -25,31 +42,53 @@ class RegistrationsController < ApplicationController
         end
 
         def registration_params
-            {
-                email: String(params[:email]),
-                password: String(params[:password]),
-                username: String(params[:username])
-            }
+            params.permit(:email, :password, :username)
         end
 
-        def registration_token_params
-            String(params[:token])
+        def load_user
+            @user ||= current_resource_owner
         end
 
-        def registration_token
-            @registration_token ||= registration_token_params
+        def token
+            @token ||= token_params
+        end
+
+        def token_params
+            params[:token]
         end
 
         def verify_registration_token
-            valid = RegistrationToken.verify(registration_token)
-
-            render json: {status: "Forbidden",
-                          code: 403,
-                          details: "Registration token needed."},
-                          status: 403 unless valid
+            if !RegistrationToken.verify(token)
+                render_unauthorized_error
+            end
         end
 
         def destroy_registration_token
-            RegistrationToken.remove(registration_token)
+            RegistrationToken.remove(token)
+        end
+
+        def render_unauthorized_error
+            render json: UnauthorizedErrorSerializer.new(details: "Registration token needed.").serializable_hash,
+                         status: 401
+        end
+
+        def render_successful_registration
+            render json: GeneralSuccessfulActionSerializer.new(action: "Registration").serializable_hash,
+                         status: 200
+        end
+
+        def render_user
+            render json: UserSerializer.new(object: @user).serializable_hash,
+                         status: 200
+        end
+
+        def render_bad_request_error
+            render json: BadRequestErrorSerializer.new(object: @user).serializable_hash,
+                         status: 400
+        end
+
+        def render_successful_deletion
+            render json: GeneralSuccessfulActionSerializer.new(action: "Account deletion").serializable_hash,
+                         status: 200
         end
 end
