@@ -1,6 +1,6 @@
 class QuillBlogPostsController < ApplicationController
     include ResourceOwnerable
-    protect_from_forgery except: :create
+    protect_from_forgery except: [:create, :update, :destroy]
     before_action :doorkeeper_authorize!
 
     def index
