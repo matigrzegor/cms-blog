@@ -32,7 +32,7 @@ const login_check = async () => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-    }).then(response => response.json());
+    });
 
     return response;
 };
@@ -81,12 +81,12 @@ const authorizationGrant = () => {
 const authorize = async () => {
     removeRequestError();
     const response = await login_check();
+    const bodyResponse = await response.json();
 
-    console.log(response);
     if (response.code === 200) {
         authorizationGrant();
     } else {
-        renderRequestError(response.message)
+        renderRequestError(bodyResponse.message)
     }
 };
 
