@@ -82,9 +82,8 @@ const authorize = async () => {
     removeRequestError();
     const response = await login_check();
     const bodyResponse = await response.json();
-
-    console.log(response);
-    if (response.code === 200) {
+    
+    if (response.status === 200) {
         authorizationGrant();
     } else {
         renderRequestError(bodyResponse.message)
