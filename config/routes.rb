@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   root to: "pages#home"
 
+  resources :user_profiles, only: [:index, :show, :update]
+
   resources :registrations, only: [:create]
   
   resources :registration_tokens, only: [:create]

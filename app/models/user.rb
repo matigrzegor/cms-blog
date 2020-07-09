@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  include ActiveStorageSupport::SupportForBase64
+  include Rails.application.routes.url_helpers
+  include AvatarUrlAttachable
+  
+  has_one_base64_attached :avatar
+
+  before_save :attach_avatar_url
+
   has_many :blog_posts
   
   # Include default devise modules. Others available are:
@@ -22,4 +30,5 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :username, uniqueness: true
   validates :username, length: { maximum: 255 }
+  validates :about, length: { maximum: 1000 }
 end

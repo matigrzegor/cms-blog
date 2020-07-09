@@ -31,6 +31,9 @@ gem 'doorkeeper', '~> 5.4'
 # rack-cors
 gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 
+# active_storage_base64
+gem 'active_storage_base64', '~> 1.1'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
