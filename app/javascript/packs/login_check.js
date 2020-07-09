@@ -82,6 +82,7 @@ const authorize = async () => {
     removeRequestError();
     const response = await login_check();
 
+    console.log(response);
     if (response.code === 200) {
         authorizationGrant();
     } else {
