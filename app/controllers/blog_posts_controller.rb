@@ -27,8 +27,12 @@ class BlogPostsController < ApplicationController
             params[:page]
         end
 
+        def blog_posts_count
+            BlogPost.count
+        end
+
         def render_blog_posts
-            render json: BlogPostSerializer.new(object: @blog_posts, type: :multiple).serializable_hash,
+            render json: BlogPostSerializer.new(object: @blog_posts, type: :multiple, count: blog_posts_count).serializable_hash,
                          status: 200
         end
 

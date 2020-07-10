@@ -1,8 +1,9 @@
 class BlogPostSerializer
 
-    def initialize(object: nil, type: :single)
+    def initialize(object: nil, type: :single, count:)
         @active_record_object = object
         @type = type
+        @count = count
     end
 
     def serializable_hash
@@ -22,9 +23,15 @@ class BlogPostSerializer
         end
 
         def multiple_resource_serializable_hash
-            @active_record_object.map do |active_record_object|
+            blog_posts_arr = @active_record_object.map do |active_record_object|
                 base_attributes_hash(active_record_object)
             end
+
+            {
+                blog_posts_count: @count,
+                blog_posts: blog_posts_arr
+
+            }
         end
 
         def base_attributes_hash(active_record_object)
