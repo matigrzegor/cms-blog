@@ -42,7 +42,7 @@ class UserProfilesController < ApplicationController
         end
 
         def load_users
-            @user ||= User.all
+            @users ||= User.all
         end
 
         def render_user

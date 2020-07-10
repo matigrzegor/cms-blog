@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   
   root to: "pages#home"
 
-  resources :user_profiles, only: [:index, :show, :update]
+  get 'user_profiles', to: 'user_profiles#index'
+  get 'user_profile', to: 'user_profiles#show'
+  patch 'user_profile', to: 'user_profiles#update'
 
   resources :registrations, only: [:create]
   
