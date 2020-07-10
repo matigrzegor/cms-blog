@@ -3,13 +3,13 @@ class BlogPostsController < ApplicationController
     def index
         load_blog_posts
 
-        respond_with_blog_posts
+        render_blog_posts
     end
 
     def show
         load_blog_post
 
-        respond_with_blog_post
+        render_blog_post
     end
 
     private
@@ -19,31 +19,22 @@ class BlogPostsController < ApplicationController
         end
 
         def load_blog_post
-            @blog_post ||= QuillBlogPost.find(params[:id])
+            @blog_post ||= BlogPost.find(params[:id])
         end
 
+        # /blog_posts?page=3
         def page_params
             params[:page]
         end
 
-        def respond_with_blog_posts
-            respond_to do |format|
-                format.json { render_blog_posts }
-            end
-        end
-
-        def respond_with_blog_post
-            respond_to do |format|
-                format.json { render_blog_post }
-            end
-        end
-
         def render_blog_posts
-            render json: BlogPostSerializer.new(object: @blog_posts, type: :multiple).serializable_hash
+            render json: BlogPostSerializer.new(object: @blog_posts, type: :multiple).serializable_hash,
+                         status: 200
         end
 
         def render_blog_post
-            render json: BlogPostSerializer.new(object: @blog_post).serializable_hash
+            render json: BlogPostSerializer.new(object: @blog_post).serializable_hash,
+                         status: 200
         end
         
 end
