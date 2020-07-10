@@ -24,6 +24,7 @@ class BlogPostsController < ApplicationController
 
         # /blog_posts?page=3
         def page_params
+            pust params[:page]
             params[:page]
         end
 
