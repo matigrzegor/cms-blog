@@ -51,7 +51,7 @@ class BlogPostSerializer
 
         def editor_specific_attribute(editor, active_record_object)
             h = (Kernel.const_get editor).editor_specific_attribute
-            h.update(h) { |key, value| value = active_record_object }
+            h.update(h) { |key, value| value = active_record_object.content_in_json }
         end
 
 end

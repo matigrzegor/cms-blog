@@ -5,5 +5,7 @@ module Quill
         def editor_specific_attribute
             {ops: []}
         end
+
     end
+    
 end

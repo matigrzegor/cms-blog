@@ -1,6 +1,6 @@
 class UserProfilesController < ApplicationController
     include ResourceOwnerable
-    protect_from_forgery except: [:create, :update, :destroy]
+    protect_from_forgery except: [:update]
     before_action :doorkeeper_authorize!
 
     def index
@@ -22,7 +22,7 @@ class UserProfilesController < ApplicationController
         if @user.save
             update_user_blog_posts
 
-            render_user_info
+            render_user
         else
             render_bad_request_error
         end 

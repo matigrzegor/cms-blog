@@ -2,6 +2,8 @@ class BlogPost < ApplicationRecord
     include DataValidatable
     include ContentStorable
     include Authorable
+    
+    extend Paginatable
 
     belongs_to :user
 
