@@ -45,12 +45,13 @@ class BlogPostSerializer
             {
                 data: {
                     editor: editor
-                }.merge!(editor_specific_attribute(editor))
+                }.merge!(editor_specific_attribute(editor, active_record_object))
             }
         end
 
-        def editor_specific_attribute(editor)
-            
+        def editor_specific_attribute(editor, active_record_object)
+            h = (Kernel.const_get editor).editor_specific_attribute
+            h.update(h) { |key, value| value = active_record_object }
         end
 
 end
