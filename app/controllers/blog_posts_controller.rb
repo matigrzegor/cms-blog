@@ -15,11 +15,15 @@ class BlogPostsController < ApplicationController
     private
 
         def load_blog_posts
-            @blog_posts ||= BlogPost.all
+            @blog_posts ||= BlogPost.page(page_params)
         end
 
         def load_blog_post
             @blog_post ||= QuillBlogPost.find(params[:id])
+        end
+
+        def page_params
+            params[:page]
         end
 
         def respond_with_blog_posts
