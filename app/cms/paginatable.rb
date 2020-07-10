@@ -1,8 +1,8 @@
 module Paginatable
 
     def page(num)
-        num = num.to_i
-        num = 1 if num == 0
+        num = 1 if num == 0 || num.nil?
+        num = Integer(num)
 
         num_on_page = 20
         num_to_fetch = num * num_on_page
