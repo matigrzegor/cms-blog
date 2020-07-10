@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   before_save :attach_avatar_url
 
-  has_many :blog_posts
+  has_many :blog_posts, dependent: :destroy
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
