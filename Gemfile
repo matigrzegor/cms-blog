@@ -35,7 +35,7 @@ gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'active_storage_base64', '~> 1.1'
 
 # aws-sdk-s3
-gem 'aws-sdk-s3', '~> 1.74'
+gem 'aws-sdk-s3', '~> 1.74', require: false
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
