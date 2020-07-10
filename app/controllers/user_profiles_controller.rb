@@ -35,7 +35,8 @@ class UserProfilesController < ApplicationController
         end
 
         def user_profile_params
-            params.permit(:username, :about, avatar: :data)
+            return params.permit(:username, :about, avatar: :data) unless params.dig(:avatar)&.dig(:data).nil?
+            params.permit(:username, :about)
         end
 
         def load_user
