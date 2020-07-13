@@ -5,8 +5,6 @@ class User < ApplicationRecord
   
   has_one_base64_attached :avatar
 
-  before_save :attach_avatar_url
-
   has_many :blog_posts, dependent: :destroy
   
   # Include default devise modules. Others available are:

@@ -20,6 +20,8 @@ class UserProfilesController < ApplicationController
         build_user
 
         if @user.save
+            attach_avatar_url
+            
             update_user_blog_posts
 
             render_user
@@ -60,6 +62,10 @@ class UserProfilesController < ApplicationController
         def render_bad_request_error
             render json: BadRequestErrorSerializer.new(object: @user).serializable_hash,
                          status: 400
+        end
+
+        def attach_avatar_url
+            @user.attach_avatar_url
         end
 
         def update_user_blog_posts

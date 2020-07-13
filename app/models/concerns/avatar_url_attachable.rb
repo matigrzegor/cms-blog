@@ -2,6 +2,7 @@ module AvatarUrlAttachable
 
     def attach_avatar_url
         self.avatar_url = generate_url if self.avatar.attached?
+        self.save
     end
     
     private
