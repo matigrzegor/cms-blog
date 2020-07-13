@@ -18,7 +18,7 @@ module Quill
                 end
 
                 def second_handler
-                    Chain::UnusedFilesPurgeHandler
+                    Chain::FilesPurgeHandler
                 end
 
                 def third_handler

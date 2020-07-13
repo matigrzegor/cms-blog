@@ -2,8 +2,14 @@ class BlogPost < ApplicationRecord
     include DataValidatable
     include ContentStorable
     include Authorable
+
+    include ActiveStorageSupport::SupportForBase64
+    include Rails.application.routes.url_helpers
+    include ImageLinkGeneratable
     
     extend Paginatable
+
+    has_many_base64_attached :images
 
     belongs_to :user
 
