@@ -8,8 +8,8 @@ module Quill
                 upload_new_files_and_change_base64_with_links_in_data
                 
                 success(data, arr)
-            rescue
-                failure(arr)
+            rescue => err
+                failure(arr, err)
             end
 
             private
