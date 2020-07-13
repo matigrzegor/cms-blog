@@ -3,7 +3,7 @@ class QuillBlogPost < BlogPost
     private
 
         def add_contents
-            data.merge!({'quill_blog_post' => self})
+            data.merge!({'quill_blog_post' => self}) if data
             
             chain_executor = Quill::Chain::Executor.new(data)
 
