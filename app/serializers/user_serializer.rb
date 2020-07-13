@@ -29,6 +29,7 @@ class UserSerializer
 
         def base_attributes_hash(active_record_object)
             {
+                id: active_record_object.id,
                 username: active_record_object.username,
                 email: active_record_object.email,
                 avatar_url: active_record_object.avatar_url,
