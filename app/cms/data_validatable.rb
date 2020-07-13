@@ -1,6 +1,6 @@
 module DataValidatable
 
-    def data_type
+    def data_presence_and_type
         if data.present?
             if data.instance_of?(ActiveSupport::HashWithIndifferentAccess) || data.instance_of?(Hash)
                 true
@@ -8,7 +8,7 @@ module DataValidatable
                 errors.add(:data, "has invalid format.")
             end
         else
-            true
+            errors.add(:data, "can't be blank when creating new record.")
         end
     end
 end
