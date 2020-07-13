@@ -30,7 +30,8 @@ module Quill
                     image_arr.each do |elem|  
                         
                         quill_blog_post.images.attach({
-                            data: elem['insert']['image']
+                            #data: elem['insert']['image']
+                            data: elem.require(:insert).permit(:image)
                         })
 
                         image_url = quill_blog_post.last_image_url
