@@ -7,6 +7,6 @@ module AvatarUrlAttachable
     private
 
         def generate_url
-            self.avatar.service_url
+            rails_blob_path(self.avatar, disposition: "attachment", only_path: true)
         end
 end

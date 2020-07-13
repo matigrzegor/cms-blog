@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include ActiveStorageSupport::SupportForBase64
   include AvatarUrlAttachable
+  include Rails.application.routes.url_helpers
   
   has_one_base64_attached :avatar
 
