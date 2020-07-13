@@ -8,8 +8,6 @@ module Quill
                 purge_files
 
                 success(data, arr)
-            rescue
-                failure(arr)
             end
         
             private

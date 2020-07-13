@@ -8,8 +8,6 @@ module Quill
                 upload_new_files_and_change_base64_with_links_in_data
                 
                 success(data, arr)
-            rescue => err
-                failure(arr, err)
             end
 
             private
@@ -28,10 +26,10 @@ module Quill
 
                 def upload_new_files_and_change_base64_with_links_in_data
                     image_arr.each do |elem|  
-                        
+                        image = elem['insert']['image']
+
                         quill_blog_post.images.attach({
-                            #data: elem['insert']['image']
-                            data: elem.require(:insert).permit(:image)
+                            data: image
                         })
 
                         image_url = quill_blog_post.last_image_url

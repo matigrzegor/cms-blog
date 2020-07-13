@@ -33,7 +33,7 @@ module Quill
                 end
 
                 def add_content_in_html
-                    @arr[1][:content_in_html] = HtmlGenerator.new(ops).generate
+                    @arr[1][:content_in_html] = "" #HtmlGenerator.new(ops).generate
                 end
 
         end
