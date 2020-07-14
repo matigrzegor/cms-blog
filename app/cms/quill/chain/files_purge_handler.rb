@@ -5,9 +5,13 @@ module Quill
             def call(data, arr = [])
                 @data = data
 
-                purge_files
+                value = purge_files
 
-                success(data, arr)
+                if value[0] == true
+                    success(data, arr)
+                elsif value[0] == false
+                    failure(arr, value[1])
+                end
             end
         
             private
@@ -20,6 +24,9 @@ module Quill
                     quill_blog_post.images.each do |image|
                         image.purge
                     end
+                    [true]
+                rescue => err
+                    [false, err]
                 end
 
         end
