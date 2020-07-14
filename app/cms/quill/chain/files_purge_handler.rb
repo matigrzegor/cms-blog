@@ -22,7 +22,7 @@ module Quill
 
                 def purge_files
                     quill_blog_post.images.each do |image|
-                        image.purge
+                        image.purge_later
                     end
                     [true]
                 rescue => err
