@@ -31,15 +31,16 @@ module Quill
                 def upload_new_files_and_change_base64_with_links_in_data
                     image_arr.each do |elem|  
                         image = elem['insert']['image']
+                        unique_filename = generate_unique_filename
 
                         quill_blog_post.images.attach({
                             data: image,
-                            #filename: generate_unique_filename
+                            filename: unique_filename
                         })
 
-                        image_url = quill_blog_post.last_image_url
+                        #image_url = quill_blog_post.last_image_url
 
-                        elem['insert']['image'] = image_url
+                        elem['insert']['image'] = unique_filename
 
                     end
                     [true]
