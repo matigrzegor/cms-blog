@@ -18,7 +18,7 @@ class BlogPost < ApplicationRecord
     before_save :add_author_username
     before_save :add_author_avatar_url
     
-    before_save :add_contents, unless: -> { data_blank_and_record_not_new }
+    #before_save :add_contents, unless: -> { data_blank_and_record_not_new }
     
     validates_presence_of :title, :introduction
     validate :data_presence_and_type, unless: -> { data_blank_and_record_not_new }

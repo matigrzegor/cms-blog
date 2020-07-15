@@ -1,6 +1,6 @@
 class QuillBlogPost < BlogPost
     
-    private
+    #private
 
         def add_contents
             data.merge!({'quill_blog_post' => self}) if data
