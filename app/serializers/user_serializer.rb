@@ -32,7 +32,7 @@ class UserSerializer
                 id: active_record_object.id,
                 username: active_record_object.username,
                 email: active_record_object.email,
-                avatar_url: active_record_object.avatar_url,
+                avatar_url: active_record_object.generate_url,
                 about: active_record_object.about
             }
         end

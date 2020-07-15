@@ -20,7 +20,7 @@ class UserProfilesController < ApplicationController
         build_user
 
         if @user.save
-            attach_avatar_url
+            #attach_avatar_url
             
             update_user_blog_posts
 
