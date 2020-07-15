@@ -41,9 +41,9 @@ module Quill
                             })
 
                             image = unique_filename
-                            
+
                         elsif image.split('/')[0..2].join == domain_name
-                            unique_filename = url.split('/')[-1].split('?')[0]
+                            unique_filename = image.split('/')[-1].split('?')[0]
 
                             image = unique_filename
                         end
