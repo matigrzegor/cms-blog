@@ -42,7 +42,7 @@ class QuillBlogPostSerializer
             {
                 data: {
                     editor: active_record_object.editor,
-                    ops: active_record_object.content_in_json
+                    ops: Quill::JsonImageLinksAdder.new(active_record_object).add
                 }
             }
         end

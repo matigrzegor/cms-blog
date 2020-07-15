@@ -6,7 +6,7 @@ module AvatarUrlAttachable
     end
 
     def generate_url
-        domain_name = ENV['DOMAIN_NAME']
+        domain_name = ENV['DOMAIN_NAME'] || "localhost:3000"
         
         url_path = rails_blob_path(self.avatar, disposition: "attachment", only_path: true)
 

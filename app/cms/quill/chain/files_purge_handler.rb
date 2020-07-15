@@ -5,13 +5,13 @@ module Quill
             def call(data, arr = [])
                 @data = data
 
-                value = purge_files
+                #value = purge_files
 
-                if value[0] == true
+                #if value[0] == true
                     success(data, arr)
-                elsif value[0] == false
-                    failure(arr, value[1])
-                end
+                #elsif value[0] == false
+                #    failure(arr, value[1])
+                #end
             end
         
             private

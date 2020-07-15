@@ -38,10 +38,7 @@ module Quill
                             filename: unique_filename
                         })
 
-                        #image_url = quill_blog_post.last_image_url
-
                         elem['insert']['image'] = unique_filename
-
                     end
                     [true]
                 rescue => err
