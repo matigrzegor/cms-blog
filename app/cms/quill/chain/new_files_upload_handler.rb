@@ -31,14 +31,17 @@ module Quill
                 def upload_new_files_and_change_base64_with_links_in_data
                     image_arr.each do |elem|  
                         image = elem['insert']['image']
-                        unique_filename = generate_unique_filename
+                        
+                        if image[0..21] == "data:image/jpeg;base64" || image[0..20] == "data:image/png;base64"
+                            unique_filename = generate_unique_filename
 
-                        quill_blog_post.images.attach({
-                            data: image,
-                            filename: unique_filename
-                        })
+                            quill_blog_post.images.attach({
+                                data: image,
+                                filename: unique_filename
+                            })
 
-                        elem['insert']['image'] = unique_filename
+                            image = unique_filename
+                        end
                     end
                     [true]
                 rescue => err
