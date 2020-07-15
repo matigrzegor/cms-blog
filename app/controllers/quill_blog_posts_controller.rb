@@ -68,7 +68,11 @@ class QuillBlogPostsController < ApplicationController
         end
 
         def add_contents
-            value = @quill_blog_post.add_contents
+            status, @quill_chain_error = @quill_blog_post.add_contents
+
+            if status == false
+                render_quill_chain_error
+            end
         end
 
         def render_quill_blog_post
@@ -88,6 +92,11 @@ class QuillBlogPostsController < ApplicationController
 
         def render_bad_request_error
             render json: BadRequestErrorSerializer.new(object: @quill_blog_post).serializable_hash,
+                         status: 400
+        end
+
+        def render_quill_chain_error
+            render json: QuillChainErrorSerializer.new(details: @quill_chain_error).serializable_hash,
                          status: 400
         end
 
