@@ -48,7 +48,7 @@ class QuillBlogPostsController < ApplicationController
         def build_quill_blog_post
             @quill_blog_post ||= new_quill_blog_post
             @quill_blog_post.attributes = quill_blog_post_params
-            @quill_blog_post.add_contents
+            add_contents
         end
 
         def new_quill_blog_post
@@ -65,6 +65,10 @@ class QuillBlogPostsController < ApplicationController
 
         def quill_blog_post_params
             params.to_unsafe_h.slice(:title, :introduction, :data)
+        end
+
+        def add_contents
+            value = @quill_blog_post.add_contents
         end
 
         def render_quill_blog_post

@@ -1,6 +1,6 @@
 class BlogPostSerializer
 
-    def initialize(object: nil, type: :single, count:)
+    def initialize(object: nil, type: :single, count: nil)
         @active_record_object = object
         @type = type
         @count = count
