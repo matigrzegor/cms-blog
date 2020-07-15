@@ -1,7 +1,7 @@
 class QuillBlogPost < BlogPost
     
     def add_contents
-        if data.present?
+        if validate_data_presence_and_type
         
             data.merge!({'quill_blog_post' => self}) if data
             
@@ -15,7 +15,6 @@ class QuillBlogPost < BlogPost
             elsif arr[0] == 'error'
                 errors.add(:chain, "#{arr[1][:handler]} has failed.#{"Details: #{arr[1][:details]}" if arr[1][:details].present?}")
                 
-                #throw :abort
                 false
             end
         else
