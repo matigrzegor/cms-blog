@@ -8,8 +8,8 @@ module AvatarUrlAttachable
     def generate_url
         domain_name = ENV['DOMAIN_NAME'] || "localhost:3000"
         
-        url_path = rails_blob_path(self.avatar, disposition: "attachment", only_path: true)
+        return domain_name + rails_blob_path(self.avatar, disposition: "attachment", only_path: true) if self.avatar.attached?
 
-        domain_name + url_path
+        nil
     end
 end
