@@ -18,8 +18,6 @@ class QuillBlogPostsController < ApplicationController
     def create
         build_quill_blog_post
 
-        @quill_blog_post.add_contents if @quill_blog_post.valid?
-
         if @quill_blog_post.save
             render_quill_blog_post
         else
@@ -30,8 +28,6 @@ class QuillBlogPostsController < ApplicationController
     def update
         load_quill_blog_post
         build_quill_blog_post
-
-        @quill_blog_post.add_contents if @quill_blog_post.valid?
 
         if @quill_blog_post.save
             render_quill_blog_post
@@ -52,6 +48,7 @@ class QuillBlogPostsController < ApplicationController
         def build_quill_blog_post
             @quill_blog_post ||= new_quill_blog_post
             @quill_blog_post.attributes = quill_blog_post_params
+            @quill_blog_post.add_contents
         end
 
         def new_quill_blog_post

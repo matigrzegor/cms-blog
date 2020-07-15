@@ -1,8 +1,8 @@
 class QuillBlogPost < BlogPost
     
-    #private
-
-        def add_contents
+    def add_contents
+        if data.present?
+        
             data.merge!({'quill_blog_post' => self}) if data
             
             chain_executor = Quill::Chain::Executor.new(data)
@@ -15,9 +15,13 @@ class QuillBlogPost < BlogPost
             elsif arr[0] == 'error'
                 errors.add(:chain, "#{arr[1][:handler]} has failed.#{"Details: #{arr[1][:details]}" if arr[1][:details].present?}")
                 
-                throw :abort
+                #throw :abort
+                false
             end
+        else
+            false
         end
+    end
 end
 
 ################################

@@ -1,6 +1,7 @@
 class BlogPost < ApplicationRecord
     include DataValidatable
     include ContentStorable
+    include ContentValidatable
     include Authorable
 
     include ActiveStorageSupport::SupportForBase64
@@ -20,8 +21,11 @@ class BlogPost < ApplicationRecord
     
     #before_save :add_contents, unless: -> { data_blank_and_record_not_new }
     
-    validates_presence_of :title, :introduction
-    validate :data_presence_and_type, unless: -> { data_blank_and_record_not_new }
+    validates_presence_of :title, :introduction, :editor
+    validate :content_in_json_not_nil
+    validate :content_in_text_not_nil
+    validate :content_in_html_not_nil
+    #validate :data_presence_and_type, unless: -> { data_blank_and_record_not_new }
     
     private
 

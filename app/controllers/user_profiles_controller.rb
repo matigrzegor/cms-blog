@@ -1,7 +1,7 @@
 class UserProfilesController < ApplicationController
     include ResourceOwnerable
     protect_from_forgery except: [:update]
-    before_action :doorkeeper_authorize!
+    before_action :doorkeeper_authorize!, only: [:show, :update]
 
     def index
         load_users
