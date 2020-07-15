@@ -11,7 +11,7 @@ module ImageLinkGeneratable
     def url_from_blob(filename)
         blob = ActiveStorage::Blob.find_by_filename(filename)
         
-        return rails_blob_path(blob, disposition: "attachment", only_path: true) if blob
+        return domain_name + rails_blob_path(blob, disposition: "attachment", only_path: true) if blob
 
         filename
     end
@@ -20,5 +20,9 @@ module ImageLinkGeneratable
 
         def last_image
             self.images.last
+        end
+
+        def domain_name
+            ENV['DOMAIN_NAME'] || "localhost:3000"
         end
 end
