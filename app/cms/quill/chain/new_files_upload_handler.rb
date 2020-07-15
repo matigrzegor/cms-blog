@@ -42,7 +42,7 @@ module Quill
 
                             elem['insert']['image'] = unique_filename
 
-                        elsif image.split('/')[0..2].join == domain_name
+                        elsif image.split('/')[0..2].join('/') == domain_name
                             unique_filename = image.split('/')[-1].split('?')[0]
 
                             elem['insert']['image'] = unique_filename
