@@ -13,7 +13,7 @@ module ImageLinkGeneratable
         
         return domain_name + rails_blob_path(blob, disposition: "attachment", only_path: true) if blob
 
-        filename
+        nil
     end
     
     private

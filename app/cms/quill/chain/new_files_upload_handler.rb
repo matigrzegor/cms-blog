@@ -5,7 +5,7 @@ module Quill
             def call(data, arr = [])
                 @data = data
                 
-                value = upload_new_files_and_change_base64_with_links_in_data
+                value = upload_new_files_and_change_image_inserts_with_unique_filenames
 
                 if value[0] == true
                     success(data, arr)
@@ -28,7 +28,7 @@ module Quill
                     @quill_blog_post ||= @data['quill_blog_post']
                 end
 
-                def upload_new_files_and_change_base64_with_links_in_data
+                def upload_new_files_and_change_image_inserts_with_unique_filenames
                     image_arr.each do |elem|  
                         image = elem['insert']['image']
                         
@@ -39,6 +39,11 @@ module Quill
                                 data: image,
                                 filename: unique_filename
                             })
+
+                            image = unique_filename
+                            
+                        elsif image.split('/')[0..2].join == domain_name
+                            unique_filename = url.split('/')[-1].split('?')[0]
 
                             image = unique_filename
                         end
@@ -56,6 +61,9 @@ module Quill
                     @unique_filename_generator ||= UniqueFilenameGenerator.new
                 end
 
+                def domain_name
+                    ENV['DOMAIN_NAME']
+                end
         end
     end
 end
