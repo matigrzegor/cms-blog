@@ -17,7 +17,6 @@ class BlogPost < ApplicationRecord
     attr_accessor :data
 
     before_save :add_author_username
-    #before_save :add_author_avatar_url
     
     validates_presence_of :title, :introduction, :editor
     validate :content_in_json_not_nil

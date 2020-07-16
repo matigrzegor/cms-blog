@@ -38,7 +38,7 @@ class BlogPostSerializer
             {
                 id: active_record_object.id,
                 author: active_record_object.author_username,
-                author_avatar_url: active_record_object.author_avatar_url,
+                author_avatar_url: generate_author_avatar_url(active_record_object),
                 create_date: active_record_object.created_at,
                 last_update_date: active_record_object.updated_at,
                 title: active_record_object.title,
@@ -60,6 +60,12 @@ class BlogPostSerializer
         def editor_specific_attribute(editor, active_record_object)
             h = (Kernel.const_get editor).editor_specific_attribute
             h.update(h) { |key, value| value = Quill::ImageUrlsAdder.new(active_record_object).add }
+        end
+
+        def generate_author_avatar_url(active_record_object)
+            author_id = active_record_object.user_id
+
+            User.find(author_id).generate_avatar_url
         end
 
         def generate_main_image_url(active_record_object)
