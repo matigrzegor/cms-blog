@@ -20,7 +20,7 @@ module Quill
             end
 
             def generate_main_image_url
-                return @quill_blob_post.url_from_blob(first_image['insert']['image']) if first_image
+                return @quill_blob_post.generate_url_from_blob(first_image['insert']['image']) if first_image
                 nil
             end
 
