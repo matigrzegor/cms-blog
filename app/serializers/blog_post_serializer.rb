@@ -42,7 +42,8 @@ class BlogPostSerializer
                 create_date: active_record_object.created_at,
                 last_update_date: active_record_object.updated_at,
                 title: active_record_object.title,
-                introduction: active_record_object.introduction
+                introduction: active_record_object.introduction,
+                main_image_url: generate_main_image_url(active_record_object)
             }
         end
 
@@ -58,7 +59,11 @@ class BlogPostSerializer
 
         def editor_specific_attribute(editor, active_record_object)
             h = (Kernel.const_get editor).editor_specific_attribute
-            h.update(h) { |key, value| value = Quill::JsonImageLinksAdder.new(active_record_object).add }
+            h.update(h) { |key, value| value = Quill::ImageUrlsAdder.new(active_record_object).add }
+        end
+
+        def generate_main_image_url(active_record_object)
+            Quill::MainImageUrlGenerator.new(active_record_object).generate
         end
 
 end

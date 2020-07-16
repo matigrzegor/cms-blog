@@ -6,7 +6,7 @@ class BlogPost < ApplicationRecord
 
     include ActiveStorageSupport::SupportForBase64
     include Rails.application.routes.url_helpers
-    include ImageLinkGeneratable
+    include ImageUrlGeneratable
     
     extend Paginatable
 

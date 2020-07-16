@@ -1,5 +1,5 @@
 module Quill
-    class JsonImageLinksAdder
+    class ImageUrlsAdder
 
         def initialize(quill_blob_post)
             @quill_blob_post = quill_blob_post
@@ -23,7 +23,7 @@ module Quill
 
             def change_filenames_with_links
                 image_arr.each do |elem|
-                    image_link = @quill_blob_post.url_from_blob(elem['insert']['image'])
+                    image_link = @quill_blob_post.generate_url_from_blob(elem['insert']['image'])
 
                     elem['insert']['image'] = image_link
                 end
