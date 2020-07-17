@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :quill_blog_posts, only: [:index, :show, :create, :update, :destroy]
 
   resources :blog_posts, only: [:index, :show]
+
+  resources :blog_post_searches, only: :create
 end

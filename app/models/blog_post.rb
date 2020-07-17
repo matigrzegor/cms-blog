@@ -9,6 +9,7 @@ class BlogPost < ApplicationRecord
     include ImageUrlGeneratable
     
     extend Paginatable
+    extend Searchable
 
     has_many_base64_attached :images
 

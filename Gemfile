@@ -37,6 +37,9 @@ gem 'active_storage_base64', '~> 1.1'
 # aws-sdk-s3
 gem 'aws-sdk-s3', '~> 1.74', require: false
 
+# textacular
+gem 'textacular', '~> 5.3'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
