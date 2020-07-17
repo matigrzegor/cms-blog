@@ -3,10 +3,11 @@ class BlogPostSearch
                 :error_details, :all_search_result_count
 
     def self.call(params)
-        new(params).call
+        new(params[:search], params[:page]).call
     end
 
-    def initialize(search: nil, page: nil)
+    
+    def initialize(search = nil, page = nil)
       @search = search
       @page = page
     end
