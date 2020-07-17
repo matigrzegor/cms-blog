@@ -6,7 +6,7 @@ class BlogPostSearch
         new(params[:search], params[:page]).call
     end
 
-    
+
     def initialize(search = nil, page = nil)
       @search = search
       @page = page
@@ -37,14 +37,17 @@ class BlogPostSearch
                 Integer(page)
                 true
             elsif search.present?
-                @error_details = "Page can't be blank"
+                @error_details = "Page can't be blank."
+                false
+            elsif page.present?
+                @error_details = "Search can't be blank."
                 false
             else
-                @error_details = "Search can't be blank"
+                @error_details = "Page can't be blank. Search can't be blank."
                 false
             end
         rescue
-            @error_details = "Page must be a number"
+            @error_details = "Page must be a number."
             false
         end
 

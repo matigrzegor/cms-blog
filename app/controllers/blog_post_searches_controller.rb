@@ -30,7 +30,7 @@ class BlogPostSearchesController < ApplicationController
         end
         
         def render_bad_request_error
-            render json: BadRequestErrorSerializer.new(object: @blog_post_search.error_details).serializable_hash,
+            render json: BadRequestErrorSerializer.new(details: @blog_post_search.error_details).serializable_hash,
                          status: 400
         end
 
