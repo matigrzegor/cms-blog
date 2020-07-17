@@ -72,7 +72,7 @@ const authorizationGrant = () => {
         redirect: "follow",
         body: JSON.stringify(data),
     })
-        .then(r => r.json())
+        //.then(r => r.json())
         .then((response) => {
             window.location.href = response.url;
         })
