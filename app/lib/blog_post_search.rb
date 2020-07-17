@@ -23,13 +23,6 @@ class BlogPostSearch
 
             self
         end
-
-    rescue => e
-        @error_details = e.to_s
-
-        @status = false
-
-        self
     end
 
     def success?
@@ -40,6 +33,7 @@ class BlogPostSearch
 
         def valid_params?
             if search.present? && page.present?
+                Integer(page)
                 true
             elsif search.present?
                 @error_details = "Page can't be blank"
@@ -48,6 +42,9 @@ class BlogPostSearch
                 @error_details = "Search can't be blank"
                 false
             end
+        rescue
+            @error_details = "Page must be a number"
+            false
         end
 
         def search_through_blog_posts
