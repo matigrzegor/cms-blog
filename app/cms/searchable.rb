@@ -7,8 +7,8 @@ module Searchable
         num_on_page = 20
         num_to_fetch = num * num_on_page
         
-        all_title_search_result = basic_search(title: search)
-        all_content_search_result = basic_search(content_in_text: search)
+        all_title_search_result = basic_search(title: search).order('created_at desc')
+        all_content_search_result = basic_search(content_in_text: search).order('created_at desc')
 
         title_search_result = all_title_search_result.first(num_to_fetch)[(num_to_fetch - num_on_page)..(num_to_fetch -1)] || []
 
