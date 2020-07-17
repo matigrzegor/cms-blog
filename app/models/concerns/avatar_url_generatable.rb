@@ -1,4 +1,4 @@
-module AvatarUrlAttachable
+module AvatarUrlGeneratable
 
     def generate_avatar_url
         domain_name = ENV['DOMAIN_NAME'] || "localhost:3000"

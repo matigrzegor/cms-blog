@@ -1,11 +1,4 @@
 module RegistrationTokenLifeCyclable
-    
-    def concoct
-        registration_token = self.new
-        registration_token.save!
-
-        registration_token.token
-    end
 
     def verify(token)
         time_now = Time.now.to_i
