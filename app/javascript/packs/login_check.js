@@ -69,15 +69,14 @@ const authorizationGrant = () => {
         headers: {
             "Content-Type": "application/json",
         },
-        redirect: "follow",
         body: JSON.stringify(data),
-    }, { mode: 'no-cors' })
-        .then(r => r.json())
-        .then(r => console.log(r))
-        // .then((response) => {
-        //     window.location.href = response.url;
-        // })
-        // .catch((response) => console.log(response));
+    })
+    .then(r => r.json())
+    .then(r => console.log(r))
+    // .then((response) => {
+    //     window.location.href = response.url;
+    // })
+    .catch((response) => console.log(response));
 };
 
 const authorize = async () => {
