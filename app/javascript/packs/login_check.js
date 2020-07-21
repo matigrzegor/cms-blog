@@ -72,10 +72,6 @@ const authorizationGrant = () => {
         redirect: "follow",
         body: JSON.stringify(data),
     }, { mode: 'no-cors' })
-        .then(r => {
-            console.log(r)
-            return r;
-        })
         .then(r => r.json())
         .then(r => console.log(r))
         // .then((response) => {
