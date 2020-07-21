@@ -7,9 +7,11 @@ class DoorkeeperHeadersMiddleware
     def call(env)
         @status, @headers, @body = @app.call(env)
 
-        put_env_hash(env)
-
         change_redirect_status_to_ok_status_in_doorkeeper_authorization_redirect
+
+        add_location_header_to_body
+
+        put_env_hash(env)
 
         [@status, @headers, @body]
     end
@@ -20,6 +22,18 @@ class DoorkeeperHeadersMiddleware
             if @status == 302
                 @status = 200
             end
+        end
+
+        def add_location_header_to_body
+            if @status == 302
+                @body = [location_hash.to_json]
+            end
+        end
+
+        def location_hash
+            {
+                location: @headers['Location']
+            }
         end
 
         def put_env_hash(env)
