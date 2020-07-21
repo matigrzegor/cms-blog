@@ -9,17 +9,16 @@ class DoorkeeperHeadersMiddleware
 
         put_env_hash(env)
 
-        add_access_control_allow_origin_header
+        change_redirect_status_to_ok_status_in_doorkeeper_authorization_redirect
 
         [@status, @headers, @body]
     end
 
     private
 
-        def add_access_control_allow_origin_header
+        def change_redirect_status_to_ok_status_in_doorkeeper_authorization_redirect
             if @status == 302
-                #@headers["Access-Control-Allow-Origin"] = 'https://musing-ramanujan-8002a4.netlify.app/admin-panel.html'
-                #@headers["Access-Control-Allow-Credentials"] = 'true'
+                @status = 200
             end
         end
 
