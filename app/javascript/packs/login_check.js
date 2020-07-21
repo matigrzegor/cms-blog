@@ -71,7 +71,7 @@ const authorizationGrant = () => {
         },
         redirect: "follow",
         body: JSON.stringify(data),
-    }, { mode: 'no-cors' })
+    })
         .then(r => {
             console.log(r)
             return r;
@@ -81,7 +81,7 @@ const authorizationGrant = () => {
         // .then((response) => {
         //     window.location.href = response.url;
         // })
-        .catch((response) => console.log(response));
+        // .catch((response) => console.log(response));
 };
 
 const authorize = async () => {
