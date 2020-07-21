@@ -7,11 +7,7 @@ class DoorkeeperHeadersMiddleware
     def call(env)
         @status, @headers, @body = @app.call(env)
 
-        change_redirect_status_to_ok_status_in_doorkeeper_authorization_redirect
-
-        add_location_header_to_body
-
-        add_content_type_header
+        change_redirect_request_to_ok_request_in_doorkeeper_authorization_redirect
 
         put_env_hash(env)
 
@@ -20,19 +16,13 @@ class DoorkeeperHeadersMiddleware
 
     private
 
-        def change_redirect_status_to_ok_status_in_doorkeeper_authorization_redirect
+        def change_redirect_request_to_ok_request_in_doorkeeper_authorization_redirect
             if @status == 302
                 @status = 200
+                #@body = ActionDispatch::Response::RackBody.new(location_hash.to_json)
+                @body = location_hash.to_json
+                @headers['Content-Type'] = "application/json"
             end
-        end
-
-        def add_location_header_to_body
-            #@body = ActionDispatch::Response::RackBody.new(location_hash.to_json)
-            @body = location_hash.to_json
-        end
-
-        def add_content_type_header
-            @headers['Content-Type'] = "application/json"
         end
 
         def location_hash
