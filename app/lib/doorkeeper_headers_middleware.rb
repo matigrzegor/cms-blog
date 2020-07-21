@@ -27,7 +27,8 @@ class DoorkeeperHeadersMiddleware
         end
 
         def add_location_header_to_body
-            @body = ActionDispatch::Response::RackBody.new(location_hash.to_json)
+            #@body = ActionDispatch::Response::RackBody.new(location_hash.to_json)
+            @body = location_hash.to_json
         end
 
         def add_content_type_header
