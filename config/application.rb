@@ -16,7 +16,7 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # require DoorkeeperHeadersMiddleware
-require_relative '../app/lib/doorkeeper_headers_middleware.rb'
+require_relative '../app/lib/doorkeeper_authorization_redirect_middleware.rb'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -28,7 +28,7 @@ module RpgIdeas
     config.load_defaults 6.0
 
     # mounting middleware
-    config.middleware.use DoorkeeperHeadersMiddleware
+    config.middleware.use DoorkeeperAuthorizationRedirectMiddleware
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
