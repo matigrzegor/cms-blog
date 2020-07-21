@@ -71,7 +71,7 @@ const authorizationGrant = () => {
         },
         redirect: "follow",
         body: JSON.stringify(data),
-    })
+    }, { mode: 'no-cors' })
         //.then(r => r.json())
         .then((response) => {
             window.location.href = response.url;
