@@ -17,6 +17,7 @@ class DoorkeeperHeadersMiddleware
         def add_access_control_allow_origin_header
             if @status == 302
                 @headers["Access-Control-Allow-Origin"] = 'https://musing-ramanujan-8002a4.netlify.app/admin-panel.html'
+                @headers["Access-Control-Allow-Credentials"] = 'true'
             end
         end
 end
