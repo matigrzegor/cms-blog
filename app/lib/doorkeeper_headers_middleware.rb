@@ -28,5 +28,13 @@ class DoorkeeperHeadersMiddleware
                 puts '#' * 40
                 puts "#{k}:   #{v}"
             end
+
+            puts '#' * 40
+            puts "status:   #{@status}"
+            puts '#' * 40
+            puts "headers:   #{@headers}"
+            puts '#' * 40 
+            puts "body:   #{@body}"
+            puts '#' * 40 
         end
 end
