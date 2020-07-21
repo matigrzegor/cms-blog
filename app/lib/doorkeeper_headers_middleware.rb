@@ -11,6 +11,8 @@ class DoorkeeperHeadersMiddleware
 
         add_location_header_to_body
 
+        add_content_type_header
+
         put_env_hash(env)
 
         [@status, @headers, @body]
@@ -25,9 +27,11 @@ class DoorkeeperHeadersMiddleware
         end
 
         def add_location_header_to_body
-            if @status == 302
-                @body = ActionDispatch::Response::RackBody.new(location_hash.to_json)
-            end
+            @body = ActionDispatch::Response::RackBody.new(location_hash.to_json)
+        end
+
+        def add_content_type_header
+            @headers['Content-Type'] = "application/json"
         end
 
         def location_hash
