@@ -72,11 +72,10 @@ const authorizationGrant = () => {
         body: JSON.stringify(data),
     })
     .then(r => r.json())
-    .then(r => console.log(r))
-    // .then((response) => {
-    //     window.location.href = response.url;
-    // })
-    .catch((response) => console.log(response));
+    .then(r => {
+        window.location.href = r.location;
+    })
+    .catch((err) => console.log(err));
 };
 
 const authorize = async () => {
