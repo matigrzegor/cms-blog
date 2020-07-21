@@ -20,7 +20,7 @@ class DoorkeeperHeadersMiddleware
             if @status == 302
                 @status = 200
                 #@body = ActionDispatch::Response::RackBody.new(location_hash.to_json)
-                @body = location_hash.to_json
+                @body = [location_hash.to_json]
                 @headers['Content-Type'] = "application/json"
             end
         end
