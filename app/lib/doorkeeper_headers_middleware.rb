@@ -26,7 +26,7 @@ class DoorkeeperHeadersMiddleware
 
         def add_location_header_to_body
             if @status == 302
-                @body = [location_hash.to_json]
+                @body = ActionDispatch::Response::RackBody.new(location_hash.to_json)
             end
         end
 
