@@ -1,24 +1,21 @@
-# README
+# Cms-blog
+### Cms for managing blog website
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## General Info
 
-Things you may want to cover:
+This rails application works together with this javascript client: https://github.com/michalgrzegor/cms-blog.
+Blog post creation engine is built from scratch. Devise handles user (cms admin) authentication and doorkeeper
+implements authorization using The OAuth 2.0 Authorization Framework (Authorization Code Grant is used to sign up
+a user to the application).
+Link to blog: https://musing-ramanujan-8002a4.netlify.app
+Link to admin panel: https://musing-ramanujan-8002a4.netlify.app/auth
 
-* Ruby version
+## Technologies
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- ruby 2.7.1
+- rails 6.0.3
+- postgresql
+- devise
+- doorkeeper
+- active_storage
+- textacular
