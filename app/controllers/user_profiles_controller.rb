@@ -20,6 +20,8 @@ class UserProfilesController < ApplicationController
         build_user
 
         if @user.save
+            update_user_blog_posts
+
             render_user
         else
             render_bad_request_error
@@ -43,6 +45,10 @@ class UserProfilesController < ApplicationController
 
         def load_users
             @users ||= User.all
+        end
+
+        def update_user_blog_posts
+            BlogPostAuthorDataUpdater.call
         end
 
         def render_user

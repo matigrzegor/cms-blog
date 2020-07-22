@@ -5,9 +5,9 @@
 
 This rails application works together with this javascript client: https://github.com/michalgrzegor/cms-blog.  
   
-Blog post creation engine is built from scratch. Devise handles user authentication and doorkeeper implements  
-authorization using the OAuth 2.0 Authorization Framework (Authorization Code Grant is used to  sign up a user  
-to the application).  
+Blog post creation engine is built from scratch. Devise handles user authentication. Doorkeeper handles  
+authorization using the OAuth 2.0 Authorization Framework (Authorization Code Grant is used to  sign up  
+a user to the application).  
   
 Link to blog: https://musing-ramanujan-8002a4.netlify.app  
 Link to admin panel: https://musing-ramanujan-8002a4.netlify.app/auth  
