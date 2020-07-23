@@ -1,18 +1,16 @@
-class BlogPostAuthorDataUpdater
-    attr_reader :status, :error_details
-
+class BlogPostAuthorDataUpdater < BaseServiceObject
+    
     def self.call
         new.call
     end
     
+    
     def call
         save_blog_posts
 
-        self
-    end
+        success
 
-    def success?
-        status
+        self
     end
 
     private
@@ -21,7 +19,5 @@ class BlogPostAuthorDataUpdater
             BlogPost.all.each do |blog_post|
                 blog_post.save
             end
-
-            @status = true
         end
 end

@@ -2,9 +2,9 @@ class BlogPostSearchesController < ApplicationController
     protect_from_forgery except: :create
 
     def create
-        create_blog_post_search
+        call_blog_post_searcher
         
-        if @blog_post_search.success?
+        if @blog_post_searcher.success?
             render_successful_blog_post_search
         else
             render_bad_request_error
@@ -13,8 +13,8 @@ class BlogPostSearchesController < ApplicationController
 
     private
 
-        def create_blog_post_search
-            @blog_post_search ||= BlogPostSearch.call(blog_post_search_params)
+        def call_blog_post_searcher
+            @blog_post_searcher ||= BlogPostSearcher.call(blog_post_search_params)
         end
 
         def blog_post_search_params
@@ -22,15 +22,19 @@ class BlogPostSearchesController < ApplicationController
         end
 
         def search_result
-            @blog_post_search.search_result
+            @blog_post_searcher.search_result
         end
 
         def all_search_result_count
-            @blog_post_search.all_search_result_count
+            @blog_post_searcher.all_search_result_count
+        end
+
+        def error_details
+            @blog_post_searcher.error_details
         end
         
         def render_bad_request_error
-            render json: BadRequestErrorSerializer.new(details: @blog_post_search.error_details).serializable_hash,
+            render json: BadRequestErrorSerializer.new(details: error_details).serializable_hash,
                          status: 400
         end
 
