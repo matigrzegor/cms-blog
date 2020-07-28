@@ -44,7 +44,7 @@ class RegistrationsController < ApplicationController
         end
 
         def registration_params
-            params.permit(:email, :password, :username)
+            params.select {|key, value| value.present? }.permit(:email, :password, :username)
         end
 
         def load_user
