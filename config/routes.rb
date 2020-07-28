@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get 'user_profile', to: 'user_profiles#show'
   patch 'user_profile', to: 'user_profiles#update'
 
-  resources :registrations, only: [:create]
+  post 'registrations', to: 'registrations#create'
+  patch 'registration', to: 'registrations#update'
+  delete 'registration', to: 'registrations#destroy'
   
   resources :registration_tokens, only: [:create]
 
