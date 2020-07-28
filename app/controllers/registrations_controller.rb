@@ -2,6 +2,7 @@ class RegistrationsController < ApplicationController
     before_action :verify_registration_token, only: :create
     protect_from_forgery except: [:create, :update, :destroy]
     before_action :doorkeeper_authorize!, only: [:update, :destroy]
+    before_action :verify_old_password, only: :update
 
     def create
         build_user
@@ -49,17 +50,25 @@ class RegistrationsController < ApplicationController
             @user ||= current_resource_owner
         end
 
-        def token
-            @token ||= token_params
-        end
-
         def token_params
             params[:token]
         end
 
+        def token
+            @token ||= token_params
+        end
+
+        def old_password_params
+            params[:old_password]
+        end
+
+        def old_password
+            @old_password ||= old_password_params
+        end
+
         def verify_registration_token
             if !RegistrationToken.verify(token)
-                render_unauthorized_error
+                render_token_needed_unauthorized_error
             end
         end
 
@@ -67,8 +76,21 @@ class RegistrationsController < ApplicationController
             RegistrationToken.remove(token)
         end
 
-        def render_unauthorized_error
+        def verify_old_password
+            load_user
+
+            if PasswordValidator.call(@user, old_password).failure?
+                render_bad_old_password_unauthorized_error
+            end
+        end
+
+        def render_token_needed_unauthorized_error
             render json: UnauthorizedErrorSerializer.new(details: "Registration token needed.").serializable_hash,
+                         status: 401
+        end
+
+        def render_bad_old_password_unauthorized_error
+            render json: UnauthorizedErrorSerializer.new(details: "Bad old password.").serializable_hash,
                          status: 401
         end
 
