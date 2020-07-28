@@ -1,4 +1,5 @@
 class RegistrationsController < ApplicationController
+    include ResourceOwnerable
     before_action :verify_registration_token, only: :create
     protect_from_forgery except: [:create, :update, :destroy]
     before_action :doorkeeper_authorize!, only: [:update, :destroy]
