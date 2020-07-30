@@ -21,13 +21,13 @@
 
   <div class="actions">
     <%= form_tag oauth_authorization_path, method: :post do %>
-      <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
-      <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
-      <%= hidden_field_tag :state, @pre_auth.state %>
-      <%= hidden_field_tag :response_type, @pre_auth.response_type %>
-      <%= hidden_field_tag :scope, @pre_auth.scope %>
-      <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge %>
-      <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method %>
+      <%= hidden_field_tag :client_id_authorize, @pre_auth.client.uid %>
+      <%= hidden_field_tag :redirect_uri_authorize, @pre_auth.redirect_uri %>
+      <%= hidden_field_tag :state_authorize, @pre_auth.state %>
+      <%= hidden_field_tag :response_type_authorize, @pre_auth.response_type %>
+      <%= hidden_field_tag :scope_authorize, @pre_auth.scope %>
+      <%= hidden_field_tag :code_challenge_authorize, @pre_auth.code_challenge %>
+      <%= hidden_field_tag :code_challenge_method_authorize, @pre_auth.code_challenge_method %>
 
       <%= label_tag(:user_email, "email") %>
       <%= email_field :user, :email %>
@@ -38,13 +38,13 @@
       <%= button_tag t('doorkeeper.authorizations.buttons.authorize'), type: 'button', id: 'authorize_btn' %>
     <% end %>
     <%= form_tag oauth_authorization_path, method: :delete do %>
-      <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
-      <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
-      <%= hidden_field_tag :state, @pre_auth.state %>
-      <%= hidden_field_tag :response_type, @pre_auth.response_type %>
-      <%= hidden_field_tag :scope, @pre_auth.scope %>
-      <%= hidden_field_tag :code_challenge, @pre_auth.code_challenge %>
-      <%= hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method %>
+      <%= hidden_field_tag :client_id_deny, @pre_auth.client.uid %>
+      <%= hidden_field_tag :redirect_uri_deny, @pre_auth.redirect_uri %>
+      <%= hidden_field_tag :state_deny, @pre_auth.state %>
+      <%= hidden_field_tag :response_type_deny, @pre_auth.response_type %>
+      <%= hidden_field_tag :scope_deny, @pre_auth.scope %>
+      <%= hidden_field_tag :code_challenge_deny, @pre_auth.code_challenge %>
+      <%= hidden_field_tag :code_challenge_method_deny, @pre_auth.code_challenge_method %>
       <%= submit_tag t('doorkeeper.authorizations.buttons.deny'), id: 'deny_btn' %>
     <% end %>
   </div>
