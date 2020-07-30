@@ -23,7 +23,7 @@ class DoorkeeperAuthorizationRedirectMiddleware
         end
 
         def is_doorkeeper_authorization_redirect?(env)
-            if @status == 302 && env['REQUEST_PATH'] == "/oauth/authorize"
+            if @status == 302 && env['REQUEST_PATH'] == "/oauth/authorize" && env['REQUEST_METHOD'] == "POST"
                 true
             else
                 false
