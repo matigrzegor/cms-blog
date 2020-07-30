@@ -39,13 +39,13 @@ const login_check = async () => {
 
 const authorizationGrant = () => {
     const authenticity_token = document.querySelector("form input");
-    const client_id = document.querySelector("#client_id");
-    const redirect_uri = document.querySelector("#redirect_uri");
-    const state = document.querySelector("#state");
-    const response_type = document.querySelector("#response_type");
-    const scope = document.querySelector("#scope");
-    const code_challenge = document.querySelector("#code_challenge");
-    const code_challenge_method = document.querySelector("#code_challenge_method");
+    const client_id = document.querySelector("#client_id_authorize");
+    const redirect_uri = document.querySelector("#redirect_uri_authorize");
+    const state = document.querySelector("#state_authorize");
+    const response_type = document.querySelector("#response_type_authorize");
+    const scope = document.querySelector("#scope_authorize");
+    const code_challenge = document.querySelector("#code_challenge_authorize");
+    const code_challenge_method = document.querySelector("#code_challenge_method_authorize");
     const email = document.querySelector("#user_email");
     const password = document.querySelector("#password");
 
