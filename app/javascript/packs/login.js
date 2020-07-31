@@ -88,7 +88,7 @@ const authorize = async () => {
     if (response.status === 200) {
         authorizationGrant();
     } else {
-        renderRequestError(bodyResponse.message)
+        renderRequestError(bodyResponse.details)
     }
 };
 
