@@ -40,7 +40,7 @@ const login_check = async () => {
 };
 
 const authorizationGrant = () => {
-    const authenticity_token = document.querySelector("form input");
+    const authenticity_token = Array.from(document.querySelectorAll('input[name="authenticity_token"]'))[0];
     const client_id = document.querySelector("#client_id_authorize");
     const redirect_uri = document.querySelector("#redirect_uri_authorize");
     const state = document.querySelector("#state_authorize");
@@ -115,7 +115,7 @@ const init_authorize = () => {
 //deny
 
 const deny = () => {
-    const authenticity_token = document.querySelector("form input");
+    const authenticity_token = Array.from(document.querySelectorAll('input[name="authenticity_token"]'))[1];
     const client_id = document.querySelector("#client_id_deny");
     const redirect_uri = document.querySelector("#redirect_uri_deny");
     const state = document.querySelector("#state_deny");
