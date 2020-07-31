@@ -47,7 +47,7 @@ class DoorkeeperAuthorizationRedirectMiddleware
         end
 
         def deny_location_hash
-            location = @headers['Location'].split('?')[0]
+            location = "https://" + @headers['Location'].split('?')[0].split('//')[1].split('/')[0]
 
             location_hash(location)
         end
