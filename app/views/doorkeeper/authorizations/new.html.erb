@@ -45,7 +45,8 @@
       <%= hidden_field_tag :scope_deny, @pre_auth.scope %>
       <%= hidden_field_tag :code_challenge_deny, @pre_auth.code_challenge %>
       <%= hidden_field_tag :code_challenge_method_deny, @pre_auth.code_challenge_method %>
-      <%= submit_tag t('doorkeeper.authorizations.buttons.deny'), id: 'deny_btn' %>
+
+      <%= button_tag t('doorkeeper.authorizations.buttons.deny'), type: 'button', id: 'deny_btn' %>
     <% end %>
   </div>
 </main>

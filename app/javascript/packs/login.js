@@ -15,6 +15,8 @@ const removeRequestError = () => {
     if (paragraph) paragraph.remove();
 };
 
+// authorization
+
 const login_check = async () => {
     const email = document.querySelector("#user_email");
     const password = document.querySelector("#password");
@@ -110,6 +112,49 @@ const init_authorize = () => {
     });
 };
 
+//deny
+
+const deny = () => {
+    const authenticity_token = document.querySelector("form input");
+    const client_id = document.querySelector("#client_id_deny");
+    const redirect_uri = document.querySelector("#redirect_uri_deny");
+    const state = document.querySelector("#state_deny");
+    const response_type = document.querySelector("#response_type_deny");
+    const scope = document.querySelector("#scope_deny");
+    const code_challenge = document.querySelector("#code_challenge_deny");
+    const code_challenge_method = document.querySelector("#code_challenge_method_deny");
+
+    const data = {
+        authenticity_token: authenticity_token.value,
+        client_id: client_id.value,
+        redirect_uri: redirect_uri.value,
+        state: state.value,
+        response_type: response_type.value,
+        scope: scope.value,
+        code_challenge: code_challenge.value,
+        code_challenge_method: code_challenge_method.value,
+    };
+
+    fetch(`${BASE_URL}/oauth/authorize`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    .then(r => r.json())
+    .then(r => {
+        window.location.href = r.location;
+    })
+    .catch((err) => console.log(err));
+}
+
+const init_deny = () => {
+    const denyBtn = document.querySelector("#deny_btn");
+
+    denyBtn.addEventListener("click", () => deny())
+}
+
 //validation
 const renderError = (message, id) => {
     const paragraph = document.createElement("p");
@@ -163,4 +208,5 @@ const addFormValidation = () => {
 };
 
 init_authorize();
+init_deny();
 addFormValidation();
