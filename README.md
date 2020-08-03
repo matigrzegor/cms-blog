@@ -4,7 +4,7 @@
 
 ## General Info
 
-This rails application works together with this javascript client: https://github.com/michalgrzegor/cms-blog.  
+This rails application works together with this [javascript client](https://github.com/michalgrzegor/cms-blog).  
   
 Blog posts management system is built from scratch. The editor is implemented using Quill as a WYSIWYG editor, 
 and Delta as a format for communication (https://quilljs.com/). Image upload and storage is implemented using 
@@ -15,8 +15,8 @@ Authentication is implemented using Devise.
 The OAuth 2.0 Authorization Framework is implemented using Doorkeeper (Authorization Code Grant is used to sign in
 a user to the application). Refresh tokens are used to refresh access tokens.  
   
-Link to blog: https://musing-ramanujan-8002a4.netlify.app  
-Link to admin panel: https://musing-ramanujan-8002a4.netlify.app/auth  
+Link to blog: [blog website](https://musing-ramanujan-8002a4.netlify.app)  
+Link to admin panel: [login](https://musing-ramanujan-8002a4.netlify.app/auth)  
   
 Credentials for test account:  
 - email: admin@admin.com
