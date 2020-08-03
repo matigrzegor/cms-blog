@@ -1,5 +1,6 @@
 # Cms-blog
-### Blog website with cms for managing content
+### A blog website with a cms for managing content
+![Logo](work_2.png)
 
 ## General Info
 
@@ -16,8 +17,8 @@ a user to the application). Refresh tokens are used to refresh access tokens.
   
 Link to blog: https://musing-ramanujan-8002a4.netlify.app  
 Link to admin panel: https://musing-ramanujan-8002a4.netlify.app/auth  
-
-Test account credentials:  
+  
+Credentials for test account:  
 - email: admin@admin.com
 - password: adminadmin
 
@@ -25,6 +26,7 @@ Test account credentials:
 
 - ruby 2.7.1
 - rails 6.0.3
+- javascript
 - postgresql
 - devise
 - doorkeeper
