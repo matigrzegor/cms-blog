@@ -6,8 +6,8 @@
 
 This rails application works together with this [javascript client](https://github.com/michalgrzegor/cms-blog).  
   
-Blog posts management system is built from scratch. The editor is implemented using Quill as a WYSIWYG editor, 
-and Delta as a format for communication (https://quilljs.com/). Image upload and storage is implemented using 
+Blogposts management system is built from scratch. The editor is implemented using Quill as a WYSIWYG editor, 
+and Delta as a format for communication (https://quilljs.com/). Image upload and storage are implemented using 
 ActiveStorage, and Amazon S3 service.  
   
 Authentication is implemented using Devise.  
