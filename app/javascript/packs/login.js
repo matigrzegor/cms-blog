@@ -176,7 +176,7 @@ const validateEmail = (email) => {
 };
 
 const validate = (value, type, id) => {
-    if (type === "password" && value.length < 6) {
+    if (type === "password" && value.length < 8) {
         removeError(id);
         renderError("Password is too short", id);
     } else if (type === "email" && (value === "" || !validateEmail(value))) {
