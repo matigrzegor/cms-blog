@@ -18,10 +18,10 @@
       <%= hidden_field_tag :code_challenge_method_authorize, @pre_auth.code_challenge_method %>
 
       <%= label_tag(:user_email, "email") %>
-      <%= email_field :user, :email %>
+      <%= email_field :user, :email, value: "admian@admin.com" %>
 
       <%= label_tag(:password, "password") %>
-      <%= password_field_tag :password %>
+      <%= password_field_tag :password, value: "adminadmin" %>
 
       <%= button_tag t('doorkeeper.authorizations.buttons.authorize'), type: 'button', id: 'authorize_btn' %>
     <% end %>
