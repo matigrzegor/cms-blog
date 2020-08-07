@@ -106,6 +106,9 @@ const isFormValid = () => {
 
 const init_authorize = () => {
     const authorizeBtn = document.querySelector("#authorize_btn");
+    const password = document.querySelector("#password");
+
+    password.value = 'adminadmin';
 
     authorizeBtn.addEventListener("click", () => {
         if(isFormValid()) authorize()
