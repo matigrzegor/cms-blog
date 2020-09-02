@@ -1,24 +1,24 @@
 class RegistrationTokensController < ApplicationController
-    protect_from_forgery except: :create
-    before_action :doorkeeper_authorize!
+  protect_from_forgery except: :create
+  before_action :doorkeeper_authorize!
 
-    def create
-        build_registration_token
-        
-        @registration_token.save
-        
-        render_registration_token
-    end
+  def create
+    build_registration_token
 
-    private
+    @registration_token.save
 
-        def build_registration_token
-            @registration_token = RegistrationToken.new
-        end
+    render_registration_token
+  end
 
-        def render_registration_token
-            render json: RegistrationTokenSerializer.new(object: @registration_token).serializable_hash,
-                         status: 200
-        end
+  private
 
+  def build_registration_token
+    @registration_token = RegistrationToken.new
+  end
+
+  def render_registration_token
+    render json: RegistrationTokenSerializer.new(
+      object: @registration_token
+    ).serializable_hash, status: 200
+  end
 end
