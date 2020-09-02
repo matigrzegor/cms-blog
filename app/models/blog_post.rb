@@ -1,33 +1,32 @@
 class BlogPost < ApplicationRecord
-    include DataValidatable
-    include ContentStorable
-    include ContentValidatable
-    include Authorable
+  include DataValidatable
+  include ContentStorable
+  include ContentValidatable
+  include Authorable
 
-    include ActiveStorageSupport::SupportForBase64
-    include Rails.application.routes.url_helpers
-    include ImageUrlGeneratable
-    
-    extend Paginatable
-    extend Searchable
+  include ActiveStorageSupport::SupportForBase64
+  include Rails.application.routes.url_helpers
+  include ImageUrlGeneratable
 
-    has_many_base64_attached :images
+  extend Paginatable
+  extend Searchable
 
-    belongs_to :user
+  has_many_base64_attached :images
 
-    attr_accessor :data
+  belongs_to :user
 
-    before_save :add_author_username
-    
-    validates_presence_of :title, :introduction, :editor
-    validate :content_in_json_not_nil
-    validate :content_in_text_not_nil
-    validate :content_in_html_not_nil
-    
-    private
+  attr_accessor :data
 
-        def add_contents
-            raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
-        end
+  before_save :add_author_username
 
+  validates_presence_of :title, :introduction, :editor
+  validate :content_in_json_not_nil
+  validate :content_in_text_not_nil
+  validate :content_in_html_not_nil
+
+  private
+
+  def add_contents
+    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+  end
 end

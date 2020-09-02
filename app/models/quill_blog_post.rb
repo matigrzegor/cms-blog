@@ -1,27 +1,26 @@
 class QuillBlogPost < BlogPost
-    
-    def add_contents
-        if validate_data_presence_and_type
-        
-            data.merge!({'quill_blog_post' => self}) if data
-            
-            chain_executor = Quill::Chain::Executor.new(data)
+  def add_contents
+    if validate_data_presence_and_type
 
-            arr = chain_executor.execute
+      data.merge!({'quill_blog_post' => self}) if data
 
-            if arr[0] == 'ok'
-                self.attributes = arr[1]
-                
-                [true]
-            elsif arr[0] == 'error'
-                error_message = "#{arr[1][:handler]} has failed.#{"Details: #{arr[1][:details]}" if arr[1][:details].present?}"
+      chain_executor = Quill::Chain::Executor.new(data)
 
-                [false, error_message]
-            end
-        else
-            [true]
-        end
+      arr = chain_executor.execute
+
+      if arr[0] == 'ok'
+        self.attributes = arr[1]
+
+        [true]
+      elsif arr[0] == 'error'
+        error_message = "#{arr[1][:handler]} has failed.#{"Details: #{arr[1][:details]}" if arr[1][:details].present?}"
+
+        [false, error_message]
+      end
+    else
+      [true]
     end
+  end
 end
 
 ################################

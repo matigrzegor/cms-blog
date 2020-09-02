@@ -2,11 +2,11 @@ class User < ApplicationRecord
   include ActiveStorageSupport::SupportForBase64
   include AvatarUrlGeneratable
   include Rails.application.routes.url_helpers
-  
+
   has_one_base64_attached :avatar
 
   has_many :blog_posts, dependent: :destroy
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -14,7 +14,7 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable
-      
+
   has_many :access_grants,
            class_name: 'Doorkeeper::AccessGrant',
            foreign_key: :resource_owner_id,
