@@ -1,27 +1,26 @@
 class BaseServiceObject
-    attr_reader :status, :error_details
+  attr_reader :status, :error_details
 
-    def success?
-        status
-    end
+  def success?
+    status
+  end
 
-    def failure?
-        !status
-    end
+  def failure?
+    !status
+  end
 
-    private
+  private
 
-        def success
-            @status = true
-        end
+  def success
+    @status = true
+  end
 
-        def failure(details = nil)
-            add_error_details(details) if details
-            @status = false
-        end
+  def failure(details = nil)
+    add_error_details(details) if details
+    @status = false
+  end
 
-        def add_error_details(details)
-            @error_details = details
-        end
-
+  def add_error_details(details)
+    @error_details = details
+  end
 end

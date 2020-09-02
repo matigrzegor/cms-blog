@@ -1,27 +1,26 @@
 class PasswordValidator < BaseServiceObject
-    
-    def self.call(user, password)
-        new(user, password).call
-    end
-    
-    def initialize(user, password)
-      @user = user
-      @password = password
-    end
-    
-    def call
-        if password_valid?
-            success
-        else
-            failure
-        end
+  def self.call(user, password)
+    new(user, password).call
+  end
 
-        self
+  def initialize(user, password)
+    @user = user
+    @password = password
+  end
+
+  def call
+    if password_valid?
+      success
+    else
+      failure
     end
 
-    private
+    self
+  end
 
-        def password_valid?
-            @user&.valid_password?(@password)
-        end
+  private
+
+  def password_valid?
+    @user&.valid_password?(@password)
+  end
 end
