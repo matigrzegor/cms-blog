@@ -4,7 +4,7 @@
 
 ## General Info
 
-This rails application works together with this [javascript client](https://github.com/michalgrzegor/cms-blog).  
+This rails application works together with this [javascript client](https://github.com/michalgrzegor/cms-blog-typescript).  
   
 Blogposts management system is built from scratch. The editor is implemented using **Quill** as a WYSIWYG editor, 
 and **Delta** as a format for communication ([quill website](https://quilljs.com/)). Image upload and storage are implemented using 
